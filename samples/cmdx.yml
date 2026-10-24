@@ -4,7 +4,7 @@
 ## Setup guide: docs/INSTALL-cloud.md in CMDxAI/CMDX-Community
 ##
 ## Copy to containers/app.yml, fill in the TODOs, then:
-##   /var/discourse/launcher rebuild app
+##   /var/cmdxcommunity/launcher rebuild app
 ##
 ## BE *VERY* CAREFUL WHEN EDITING!
 ## YAML FILES ARE SUPER SUPER SENSITIVE TO MISTAKES IN WHITESPACE OR ALIGNMENT!
@@ -58,15 +58,15 @@ env:
 ## The Docker container is stateless; all data is stored in /shared
 volumes:
   - volume:
-      host: /var/discourse/shared/standalone
+      host: /var/cmdxcommunity/shared/standalone
       guest: /shared
   - volume:
-      host: /var/discourse/shared/standalone/log/var-log
+      host: /var/cmdxcommunity/shared/standalone/log/var-log
       guest: /var/log
 
 hooks:
   ## Fetch code from CMDxAI/CMDX-Community. The read-only GitHub token lives in
-  ## /var/discourse/shared/standalone/github-token (root-only), so it never appears
+  ## /var/cmdxcommunity/shared/standalone/github-token (root-only), so it never appears
   ## in this file or in the build output. Plugins are bundled in the repository.
   before_code:
     - exec:
