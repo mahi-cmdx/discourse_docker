@@ -1,7 +1,7 @@
 ## CMDX Community: standalone container that builds from the private
-## mahi-cmdx/CMDX-Community repository instead of upstream Discourse.
+## CMDxAI/CMDX-Community repository instead of upstream Discourse.
 ##
-## Setup guide: docs/INSTALL-cloud.md in mahi-cmdx/CMDX-Community
+## Setup guide: docs/INSTALL-cloud.md in CMDxAI/CMDX-Community
 ##
 ## Copy to containers/app.yml, fill in the TODOs, then:
 ##   /var/discourse/launcher rebuild app
@@ -27,7 +27,7 @@ params:
   ## Max 25% of total memory: "1GB" for a 4 GB droplet, "256MB" for 2 GB
   db_shared_buffers: "1GB"
 
-  ## Branch of mahi-cmdx/CMDX-Community to deploy
+  ## Branch of CMDxAI/CMDX-Community to deploy
   version: whitelabel
 
 env:
@@ -65,7 +65,7 @@ volumes:
       guest: /var/log
 
 hooks:
-  ## Fetch code from mahi-cmdx/CMDX-Community. The read-only GitHub token lives in
+  ## Fetch code from CMDxAI/CMDX-Community. The read-only GitHub token lives in
   ## /var/discourse/shared/standalone/github-token (root-only), so it never appears
   ## in this file or in the build output. Plugins are bundled in the repository.
   before_code:
@@ -73,7 +73,7 @@ hooks:
         cd: $home
         cmd:
           - sudo -H -E -u discourse git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
-          - bash -c 'sudo -H -u discourse git remote set-url origin "https://x-access-token:$(cat /shared/github-token)@github.com/mahi-cmdx/CMDX-Community.git"'
+          - bash -c 'sudo -H -u discourse git remote set-url origin "https://x-access-token:$(cat /shared/github-token)@github.com/CMDxAI/CMDX-Community.git"'
 
 run:
   - exec: echo "Beginning of custom commands"
